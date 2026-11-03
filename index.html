@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vind jouw match · Dogs on a Journey</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="card-focus.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#start" aria-label="Dogs on a Journey start">Dogs on a Journey <span>·</span> Match</a>
+    <button class="shortlist-button" id="show-shortlist">♡ <span>Mijn shortlist</span> <b id="shortlist-count">0</b></button>
+  </header>
+  <main id="start">
+    <section class="hero" id="welcome">
+      <p class="eyebrow">16 honden · één warm mandje</p>
+      <h1>Wie past bij jouw leven?</h1>
+      <p class="intro">Beantwoord vier korte vragen. Daarna tonen we honden uit onze selectie die mogelijk goed bij je passen. Een profiel blijft altijd leidend.</p>
+      <button class="primary" id="begin-quiz">Ontdek mijn matches <span>→</span></button>
+      <p class="helper">Je kunt maximaal 10 honden bewaren in je shortlist.</p>
+    </section>
+
+    <section class="quiz hidden" id="quiz" aria-live="polite">
+      <div class="progress"><span id="progress-label">Vraag 1 van 4</span><div><i id="progress-fill"></i></div></div>
+      <p class="eyebrow">Jouw situatie</p>
+      <h2 id="question-title"></h2>
+      <p id="question-help"></p>
+      <div class="answer-grid" id="answer-grid"></div>
+    </section>
+
+    <section class="deck-section hidden" id="deck-section">
+      <div class="deck-topline"><p class="eyebrow">Jouw mogelijke matches</p><button class="text-button" id="restart">Pas antwoorden aan</button></div>
+      <p class="deck-note">Een hartje bewaart een hond. Tik op de kaart voor alle bekende informatie.</p>
+      <article class="dog-card" id="dog-card" tabindex="0" role="button" aria-label="Open hondenprofiel">
+        <img id="dog-image" alt="">
+        <div class="card-shade"></div>
+        <div class="card-copy"><span class="match-badge" id="match-badge"></span><h2 id="dog-name"></h2><p id="dog-facts"></p><p class="dog-note" id="dog-note"></p></div>
+      </article>
+      <div class="actions" aria-label="Kaartacties"><button class="round pass" id="pass" aria-label="Overslaan">×</button><button class="round details" id="details" aria-label="Bekijk details">i</button><button class="round like" id="like" aria-label="Bewaar in shortlist">♡</button></div>
+      <p class="counter" id="card-counter"></p>
+    </section>
+
+    <section class="empty hidden" id="empty-state"><p class="eyebrow">Einde van de selectie</p><h2>Je hebt alle mogelijke matches gezien.</h2><p>Bekijk je shortlist, pas je antwoorden aan, of probeer het later nog eens.</p><button class="primary" id="open-shortlist">Bekijk mijn shortlist</button></section>
+  </main>
+
+  <dialog id="dog-dialog"><button class="close" id="close-dialog" aria-label="Sluiten">×</button><img id="dialog-image" alt=""><div class="dialog-content"><p class="eyebrow" id="dialog-country"></p><h2 id="dialog-name"></h2><p id="dialog-facts"></p><p class="dialog-note" id="dialog-note"></p><p class="disclaimer">Deze samenvatting bevat alleen dossierinformatie. Lees altijd het volledige profiel en neem bij twijfel contact op.</p><a class="primary full" id="profile-link" target="_blank" rel="noreferrer">Bekijk volledig profiel <span>↗</span></a><a class="secondary full" id="apply-link" target="_blank" rel="noreferrer">Aanvragen voor adoptie</a></div></dialog>
+
+  <dialog id="shortlist-dialog"><button class="close" id="close-shortlist" aria-label="Sluiten">×</button><div class="shortlist-content"><p class="eyebrow">Jouw selectie</p><h2>Mijn shortlist</h2><p id="shortlist-message">Je hebt nog geen honden bewaard.</p><div id="shortlist-list"></div></div></dialog>
+  <script src="dogs-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

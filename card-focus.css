@@ -1,0 +1,7 @@
+/* Explicit card frames for portrait photos, verified against the wide card. */
+.dog-card img[data-dog="azra"] { object-position: center 23% !important; }
+.dog-card img[data-dog="beanie"] { object-position: center top !important; }
+.dog-card img[data-dog="cara"] { object-position: center 18% !important; }
+.dog-card img[data-dog="chewy"] { object-position: center 8% !important; }
+.dog-card img[data-dog="molly"] { object-position: center 12% !important; }
+.dog-card img[data-dog="soul"] { object-position: center 8% !important; }
