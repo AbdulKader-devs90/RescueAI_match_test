@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:8000/api/ask";
+const API_URL = "http://127.0.0.1:8000/api/ask";\
+const GUIDE_PDF_URL = "adoption-guide.pdf";
 
 const questionInput = document.getElementById("faq-question");
 const chatMessages = document.getElementById("chat-messages");
@@ -19,7 +20,32 @@ function addMessage(className, text) {
   chatMessages.appendChild(message);
   return message;
 }
+function addSourceLinks(sources) {
+  const language = document.documentElement.lang || "nl";
+  const label = language === "en" ? "Source: " : "Bron: ";
+  const message = document.createElement("p");
+  message.className = "chat-source";
+  message.append(document.createTextNode(label));
 
+  sources.forEach((source, index) => {
+    if (index) message.append(document.createTextNode("; "));
+
+    const pages = source.pages || [];
+    const pageLabel = language === "en"
+      ? (pages.length === 1 ? "page" : "pages")
+      : "pagina";
+
+    const link = document.createElement("a");
+    link.href = `adoption-guide.pdf#page=${pages[0] || 1}`;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent =
+      `${source.title}, ${pageLabel} ${pages.join(", ")}`;
+    message.append(link);
+  });
+
+  chatMessages.appendChild(message);
+}
 // Clicking a sample asks the RAG chatbot immediately.
 document.querySelectorAll(".sample-question").forEach((button) => {
   button.addEventListener("click", () => {
@@ -56,14 +82,10 @@ form.addEventListener("submit", async (event) => {
     answerMessage.textContent = result.answer;
 
     if (result.sources?.length) {
-      const citations = result.sources
-        .map((source) =>
-          `${source.title}, pagina ${source.pages.join(", ")}`
-        )
-        .join("; ");
+  addSourceLinks(result.sources);
+}
 
-      addMessage("chat-source", `Bron: ${citations}`);
-    }
+
   } catch (error) {
     answerMessage.textContent =
       `Kan geen verbinding maken met de chatbot: ${error.message}`;
