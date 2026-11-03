@@ -552,3 +552,22 @@ dialog > img {
     grid-template-columns: 1fr;
   }
 }
+
+#chat-messages .chat-user {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--sage);
+  white-space: pre-wrap;
+}
+
+#chat-messages .chat-answer {
+  margin-top: 14px;
+  white-space: pre-wrap;
+}
+
+#chat-messages .chat-source {
+  margin-top: 8px;
+  color: var(--muted);
+  font: 13px Arial, sans-serif;
+}
