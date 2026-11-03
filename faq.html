@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Post-adoption FAQ · Dogs on a Journey</title>
   <link rel="stylesheet" href="styles.css">
-</head>  
+</head>
 <body>
   <header class="site-header">
     <a class="brand" href="index.html#start">
@@ -16,46 +16,54 @@
 
   <main>
     <section class="hero">
-      <p class="eyebrow">POST-ADOPTIE FAQ</p>
+      <p class="eyebrow">Post-adoptie FAQ</p>
       <h1>Vragen na adoptie?</h1>
-      <p class="intro">
-        Stel een vraag over de eerste weken met je hond.
-      </p>
-      <div class="sample-questions">
-  <p class="eyebrow">Voorbeeldvragen</p>
+      <p class="intro">Stel een vraag over de eerste weken met je hond.</p>
 
-  <div class="sample-question-list">
-    <button class="sample-question" type="button"
-      data-question="Hoe pak ik wandelen en zindelijkheid aan?">
-      Wandelen en zindelijkheid
-    </button>
+      <div class="sample-questions" aria-label="Voorbeeldvragen">
+        <p class="eyebrow">Voorbeeldvragen</p>
+        <div class="sample-question-list">
+          <button class="sample-question" type="button"
+            data-question="Hoe pak ik wandelen en zindelijkheid aan?">
+            Wandelen en zindelijkheid
+          </button>
+          <button class="sample-question" type="button"
+            data-question="Wat kan ik verwachten tijdens de eerste weken?">
+            De eerste weken
+          </button>
+          <button class="sample-question" type="button"
+            data-question="Wat doe ik als mijn hond een ongelukje in huis heeft?">
+            Een ongelukje in huis
+          </button>
+        </div>
 
-    <button class="sample-question" type="button"
-      data-question="Wat kan ik verwachten tijdens de eerste weken?">
-      De eerste weken
-    </button>
+        <details class="sample-more">
+          <summary>Meer voorbeeldvragen</summary>
+          <div class="sample-question-list">
+            <button class="sample-question" type="button"
+              data-question="Hoe maak ik mijn huis veilig voor mijn hond?">
+              Je huis veilig maken
+            </button>
+            <button class="sample-question" type="button"
+              data-question="Hoe laat ik mijn hond kennismaken met mijn andere hond?">
+              Kennismaken met een andere hond
+            </button>
+            <button class="sample-question" type="button"
+              data-question="Hoe kan ik mijn hond leren om alleen thuis te zijn?">
+              Alleen thuis zijn
+            </button>
+            <button class="sample-question" type="button"
+              data-question="Wanneer moet ik met mijn hond naar de dierenarts?">
+              Naar de dierenarts
+            </button>
+            <button class="sample-question" type="button"
+              data-question="Wat moet ik weten over de voeding van mijn hond?">
+              Voeding
+            </button>
+          </div>
+        </details>
+      </div>
 
-    <button class="sample-question" type="button"
-      data-question="Wat doe ik als mijn hond een ongelukje in huis heeft?">
-      Een ongelukje in huis
-    </button>
-  </div>
-
-  <details class="sample-more">
-    <summary>Meer voorbeeldvragen</summary>
-    <div class="sample-question-list">
-      <button class="sample-question" type="button"
-        data-question="Hoe maak ik mijn huis veilig voor mijn hond?">
-        Je huis veilig maken
-      </button>
-
-      <button class="sample-question" type="button"
-        data-question="Hoe bereid ik het eerste bezoek aan de dierenarts voor?">
-        Eerste bezoek aan de dierenarts
-      </button>
-    </div>
-  </details>
-</div>
       <div id="chat-messages" aria-live="polite">
         <p>Hallo! Ik kan helpen met vragen over de informatie in onze adoptiegids.</p>
       </div>
@@ -66,15 +74,14 @@
           id="faq-question"
           name="question"
           type="text"
-          placeholder="Bijvoorbeeld: Hoe pak ik wandelen en zindelijkheid aan?"
+          placeholder="Typ je vraag of kies hierboven een voorbeeld"
           required
         >
         <button class="primary" type="submit">Verstuur</button>
       </form>
     </section>
   </main>
-<script src="faq.js"></script>
-</body>
-</html>
+
+  <script src="faq.js"></script>
 </body>
 </html>
