@@ -571,3 +571,43 @@ dialog > img {
   color: var(--muted);
   font: 13px Arial, sans-serif;
 }
+.sample-questions {
+  margin: 28px 0;
+  font-family: Arial, sans-serif;
+}
+
+.sample-question-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sample-question {
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font: 14px Arial, sans-serif;
+}
+
+.sample-question:hover,
+.sample-question:focus-visible {
+  border-color: var(--coral);
+  background: var(--sage);
+}
+
+.sample-more {
+  margin-top: 14px;
+  color: var(--muted);
+  font: 14px Arial, sans-serif;
+}
+
+.sample-more summary {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.sample-more .sample-question-list {
+  padding-top: 12px;
+}
