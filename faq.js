@@ -46,7 +46,6 @@ const interfaceText = {
 function setLanguage(language) {
   currentLanguage = language;
   const text = interfaceText[language];
-
   document.documentElement.lang = language;
 
   document.querySelectorAll("[data-i18n]").forEach((element) => {
@@ -54,8 +53,7 @@ function setLanguage(language) {
   });
 
   document.querySelectorAll(".sample-question").forEach((button) => {
-    const label =
-      button.dataset[`label${language === "nl" ? "Nl" : "En"}`];
+    const label = button.dataset[`label${language === "nl" ? "Nl" : "En"}`];
     if (label) button.textContent = label;
   });
 
@@ -71,9 +69,7 @@ function setLanguage(language) {
 }
 
 document.querySelectorAll(".language-button").forEach((button) => {
-  button.addEventListener("click", () => {
-    setLanguage(button.dataset.language);
-  });
+  button.addEventListener("click", () => setLanguage(button.dataset.language));
 });
 
 function clearPreviousAnswer() {
@@ -83,12 +79,58 @@ function clearPreviousAnswer() {
 }
 
 function addMessage(className, text) {
-  const message = document.createElement("p");
+  const tagName = className === "chat-answer" ? "div" : "p";
+  const message = document.createElement(tagName);
   message.className = className;
   message.textContent = text;
   message.style.whiteSpace = "pre-line";
   chatMessages.appendChild(message);
   return message;
+}
+
+function renderAnswer(element, answer) {
+  // The clickable source link below the answer is the citation.
+  // Remove duplicate citation lines from the generated answer.
+  const lines = String(answer || "")
+    .split(/\r?\n/)
+    .filter(
+      (line) =>
+        !/^\s*\*{0,2}\s*(?:bron|source)\s*[:\uFF1A].*\*{0,2}\s*$/i.test(line)
+    );
+
+  element.replaceChildren();
+  let list = null;
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line) {
+      list = null;
+      continue;
+    }
+
+    const bullet = line.match(
+      /^[\u2022\u2023\u25E6\u2043\u2219*-]\s*(.+)$/u
+    );
+
+    if (bullet) {
+      if (!list) {
+        list = document.createElement("ul");
+        element.appendChild(list);
+      }
+
+      const item = document.createElement("li");
+      item.textContent = bullet[1].replace(/\*\*/g, "");
+      list.appendChild(item);
+      continue;
+    }
+
+    list = null;
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = line.replace(/\*\*/g, "");
+    element.appendChild(paragraph);
+  }
 }
 
 function addSourceLinks(sources, sourceLabel) {
@@ -100,7 +142,7 @@ function addSourceLinks(sources, sourceLabel) {
     if (index) message.append(document.createTextNode("; "));
 
     const pages = source.pages || [];
-    const pageLabel =
+    const pageWord =
       currentLanguage === "en"
         ? pages.length === 1
           ? "page"
@@ -111,30 +153,31 @@ function addSourceLinks(sources, sourceLabel) {
     link.href = `${GUIDE_PDF_URL}#page=${pages[0] || 1}`;
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.textContent =
-      `${source.title}, ${pageLabel} ${pages.join(", ")}`;
-
+    link.textContent = `${source.title}, ${pageWord} ${pages.join(", ")}`;
     message.append(link);
   });
 
   chatMessages.appendChild(message);
 }
 
-// Clicking a sample question sends it to the RAG API.
+// Sample buttons send the selected question to the RAG API.
 document.querySelectorAll(".sample-question").forEach((button) => {
   button.addEventListener("click", () => {
-    const language =
+    const selectedLanguage =
       document.documentElement.lang === "en" ? "En" : "Nl";
+    const questionKey = `question${selectedLanguage}`;
 
-    const question =
-      button.dataset[`question${language}`] ||
+    questionInput.value =
+      button.dataset[questionKey] ||
       button.dataset.question ||
       button.dataset.questionEn ||
       "";
 
-    if (!question.trim()) return;
+    if (!questionInput.value.trim()) {
+      console.error("Sample question is missing a data-question attribute.");
+      return;
+    }
 
-    questionInput.value = question;
     form.requestSubmit();
   });
 });
@@ -167,7 +210,7 @@ form.addEventListener("submit", async (event) => {
       throw new Error(result.detail || text.genericError);
     }
 
-    answerMessage.textContent = result.answer;
+    renderAnswer(answerMessage, result.answer);
 
     if (result.sources?.length) {
       addSourceLinks(result.sources, text.source);
