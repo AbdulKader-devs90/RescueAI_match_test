@@ -611,3 +611,20 @@ dialog > img {
 .sample-more .sample-question-list {
   padding-top: 12px;
 }
+
+#chat-messages .chat-answer p {
+  margin: 0 0 10px;
+}
+
+#chat-messages .chat-answer p:last-child {
+  margin-bottom: 0;
+}
+
+#chat-messages .chat-answer ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+#chat-messages .chat-answer li + li {
+  margin-top: 6px;
+}
