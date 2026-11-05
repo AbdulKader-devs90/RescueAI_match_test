@@ -628,3 +628,76 @@ dialog > img {
 #chat-messages .chat-answer li + li {
   margin-top: 6px;
 }
+
+/* Escalation card (post-adoption FAQ) */
+#chat-messages .chat-escalation {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--gold);
+  border-left-width: 5px;
+  background: #fdf4df;
+  font: 15px/1.5 Arial, sans-serif;
+}
+
+#chat-messages .chat-escalation.is-emergency {
+  border-color: var(--coral);
+  background: #fbe7e2;
+}
+
+#chat-messages .chat-escalation-soft {
+  border-color: var(--line);
+  background: var(--paper);
+  color: var(--muted);
+}
+
+#chat-messages .chat-escalation p + p {
+  margin-top: 6px;
+}
+
+#chat-messages .escalation-title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+#chat-messages .escalation-action {
+  font-weight: 700;
+}
+
+#chat-messages .escalation-ticket,
+#chat-messages .escalation-privacy {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.escalation-form {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(23, 38, 31, 0.12);
+}
+
+.escalation-form label {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.escalation-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  font: 15px Arial, sans-serif;
+}
+
+.escalation-form button {
+  justify-self: start;
+  margin-top: 8px;
+}
+
+#chat-messages .escalation-status:empty {
+  display: none;
+}
