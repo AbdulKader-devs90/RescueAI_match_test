@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/api/ask";
+const API_URL = "https://rescueai-post-adoption-api.onrender.com/api/ask";
 const GUIDE_PDF_URL = "adoption-guide.pdf";
 
 const questionInput = document.getElementById("faq-question");
